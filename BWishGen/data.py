@@ -31,6 +31,11 @@ class Data:
     def get_column_type(self, column):
         return self.data.dtypes[column]
 
+    def search_data(self, column, value):
+        for i in range(0, self.get_row_count()):
+            if self.get_cell(i, column) == value:
+                return self.get_row(i)
+
 
 
 

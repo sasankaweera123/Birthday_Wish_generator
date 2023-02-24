@@ -34,16 +34,20 @@ def generate_random_wish(n):
 
 def add_wish(wish,gender):
 
-    if check_words_in_wish(wish):
+    if not search_wish(wish):
 
-        values = [data.get_row_count()+1, wish, gender]
+        if check_words_in_wish(wish):
 
-        with open('wish.csv', 'a') as f:
-            csv_writer = writer(f)
-            csv_writer.writerow(values)
-            f.close()
+            values = [data.get_row_count()+1, wish, gender]
+
+            with open('wish.csv', 'a') as f:
+                csv_writer = writer(f)
+                csv_writer.writerow(values)
+                f.close()
+        else:
+            print("Invalid wish")
     else:
-        print("Invalid wish")
+        print("Wish already exists")
 
 
 def get_wish():
@@ -62,13 +66,15 @@ def check_words_in_wish(wish):
     return c
 
 
+def search_wish(wish):
+    if data.search_data("Wish", wish) is not None:
+        return True
+
+
 def main():
 
-    # generate_gender_specific_random(3, "M")
-
-    print(get_wish())
-
-    print(data.get_row_count()) 
+    generate_gender_specific_random(3, "M")
+    # add_wish("Sending you my prayers and wishes on your special day. Happy birthday.", "B")
 
 
 if __name__ == "__main__":

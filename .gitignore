@@ -1,2 +1,6 @@
 \.idea
 \venv
+*.pyc
+*.pyc
+*.pyc
+BWishGen/__pycache__/data.cpython-39.pyc
